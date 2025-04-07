@@ -100,17 +100,6 @@ onMounted(() => {
         popoverBody.style.padding = '0px'; // Thay đổi giá trị padding
       }
     });
-    document.addEventListener('click', (event) => {
-      const target = event.target;
-      // Đóng popover nếu nhấn vào bất kỳ nơi nào ngoài popover hoặc nút kích hoạt
-      if (
-        popoverInstance &&
-        !popoverTrigger.contains(target) &&
-        !document.querySelector('.popover')?.contains(target)
-      ) {
-        popoverInstance.hide(); // Đóng popover
-      }
-  });
   }
 );
 
