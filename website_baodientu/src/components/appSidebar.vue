@@ -82,7 +82,6 @@ const notification = ref([
 ])
 onMounted(() => {
     const popoverTrigger = document.querySelector('.nav-notifi');
-    const popoverInstance = null;
     new Popover(popoverTrigger, {
     content: `
       <div>

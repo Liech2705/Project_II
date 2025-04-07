@@ -54,15 +54,17 @@
                     <td>{{ category.description }}</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="btn btn-outline-primary me-1" >Sửa</button>
-                            <button class="btn btn-outline-danger" @click="removeCategory(category.id)">Xóa</button>
+                            <button class="btn btn-outline-primary me-1" >
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button class="btn btn-outline-danger" @click="removeCategory(category.id)">
+                                <i class="fa-solid fa-eraser"></i>
+                            </button>
                         </div>
-                        
                     </td>
                 </tr>
             </tbody>
         </table>
-        
     </div>
 
 </template>
