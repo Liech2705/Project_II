@@ -7,7 +7,7 @@
           <i class="fa-solid fa-bars"></i>
         </button>
         <div class="sidebar-logo">
-          <router-link to="/" class="text-light text-decoration-none">Báo HEL</router-link>
+          <router-link to="/" class="text-light text-decoration-none">LHExpress</router-link>
         </div>
       </div>
       <ul class="sidebar-nav">
@@ -31,23 +31,26 @@
           </router-link>
         </li>
       </ul>
-      <div class="sidebar-footer">
-        <router-link to="#" class="sidebar-link text-decoration-none">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Đăng xuất</span>
-        </router-link>
-      </div>
     </aside>
-    <nav class="navbar navbar-expand-sm  bg-primary fixed-top border-bottom" id="navbar">
+    <nav class="navbar navbar-expand-sm  bg-primary fixed-top border-bottom " id="navbar">
       <div class="container-fluid d-flex justify-content-end align-items-center">
-        <button class="nav-notifi btn btn-outline-dark btn-primary me-2" title="Thông báo" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Content">
-          <i class="fa-regular fa-bell"></i>
-          <span class="badge bg-danger">{{ notif }}</span>
-        </button>
-        <router-link class="navbar-brand" to="/">
-            <img src="@/assets/image/admin.png" alt="" class="img-fluid rounded-circle border-black" style="width: 2.45rem; height: 2.45rem;">
-        </router-link> 
+          <button class="nav-notifi btn btn-outline-dark btn-primary me-2" title="Thông báo" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="bottom" data-bs-content="Content">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge bg-danger">{{ notif }}</span>
+          </button>
+          <div class="dropdown">
+            <router-link class="navbar-logo dropdown-toggle" to="/" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="@/assets/image/admin.png" alt="" class="img-fluid rounded-circle border-black" style="width: 2.45rem; height: 2.45rem;">
+            </router-link> 
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+              <li><router-link to="/" class="dropdown-item" href="#">Thông tin cá nhân</router-link></li>
+              <li><router-link to="/" class="dropdown-item" href="#">Đổi mật khẩu</router-link></li>
+              <li><router-link to="/" class="dropdown-item" href="#">Đăng xuất</router-link></li>
+            </ul>
+          </div>
       </div>
+
+      
     </nav>
     <!-- Main Content -->
     <div class="main flex-grow-1 p-3" :class="{ 'main-expanded': isExpand }">
@@ -63,34 +66,63 @@ import { Popover } from 'bootstrap';
 import { RouterLink } from 'vue-router';
 
 const isExpand = ref(false);
+ // Khởi tạo biến popoverInstance bên ngoài hàm onMounted
+const notif = ref(4);
+
+
 const toggleSidebar = () => {
   isExpand.value = !isExpand.value;
 };
-const notif = ref(4)
+
+const notification = ref([
+  { message: '🧑‍💻 Kháng cự cấm tài khoản' },
+  { message: 'Đã xóa bài viêt' },
+  { message: 'Đã cấm tài khoản a' },
+  { message: 'Có người liên hệ' },
+])
 onMounted(() => {
     const popoverTrigger = document.querySelector('.nav-notifi');
+    const popoverInstance = null;
     new Popover(popoverTrigger, {
     content: `
-    <div>
-      <p class="text-center">Bạn đã nhận được một thông báo <a href="#" class="d-flex  align-items-center text-decoration-none  mb-2">
-            <i class="fa-solid fa-bell me-2"></i>
-            <span>link</span>
-        </a></p>
-        
-        <a href="#" class="text-decoration-none  mb-2">
-            <i class="fa-solid fa-bell me-2"></i>
-            <span>Thông báo 2</span>
-        </a>
-    </div>
+      <div>
+        <div class="list-group list-group-flush">
+          ${notification.value.map(item => `<a href ="#" class="list-group-item list-group-item-action">${item.message}</a>`).join('')}
+        </div>
+      </div>
     `,
     html: true, // Cho phép nội dung HTML
     placement: 'bottom', // Vị trí popover
   });
-});
+  popoverTrigger.addEventListener('shown.bs.popover', () => {
+      const popoverBody = document.querySelector('.popover-body');
+      if (popoverBody) {
+        popoverBody.style.padding = '0px'; // Thay đổi giá trị padding
+      }
+    });
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      // Đóng popover nếu nhấn vào bất kỳ nơi nào ngoài popover hoặc nút kích hoạt
+      if (
+        popoverInstance &&
+        !popoverTrigger.contains(target) &&
+        !document.querySelector('.popover')?.contains(target)
+      ) {
+        popoverInstance.hide(); // Đóng popover
+      }
+  });
+  }
+);
+
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.dropdown-toggle::after {
+  content: none !important; /* Xóa caret */
+  border: none !important; /* Xóa đường viền */
+}
 
 nav{
     position: fixed;
@@ -99,7 +131,6 @@ nav{
     z-index: 999;
     border-bottom: 10px solid #ffffff;
 }
-
 
 
 li {

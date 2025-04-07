@@ -1,6 +1,8 @@
 <template>
-  <div class="container border-top border-3 border-primary rounded-top">
-    <table class="table mt-3 table-hover table-striped">
+  <div class="container ">
+    <h3 class="mt-3">Quản lý bài viết</h3>
+    <div class="border-top border-3 border-primary rounded-top">
+        <table class="table mt-3 table-hover table-striped">
         <thead>
             <tr class="table-primary">
                 <th>STT</th>
@@ -28,6 +30,8 @@
             </tr>
         </tbody>
     </table>
+    </div>
+    
     <div class="modal fade" id="deleteNews" tabindex="-1" aria-labelledby="deleteNewsLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -1,7 +1,8 @@
 <template>
     <div class="container">
-        <div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addcatelogy" >
+        <h3 class="mt-3">Quản lý danh mục</h3>
+        <div class="mt-3 border-top border-3 border-primary rounded-top">
+            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addcatelogy" >
                 Thêm danh mục
             </button>
             <div class="modal fade" id="addcatelogy" data-bs-backdrop="static">
