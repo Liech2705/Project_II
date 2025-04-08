@@ -1,38 +1,35 @@
 <template>
-    <div class="container">
-        <h3 class="mt-3">Quản lý danh mục</h3>
-        <div class="mt-3 border-top border-3 border-primary rounded-top">
-            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addcatelogy" >
-                Thêm danh mục
-            </button>
-            <div class="modal fade" id="addcatelogy" data-bs-backdrop="static">
-                <div class="modal-dialog" >
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Thêm danh mục</h4>
-                    </div>
+    <div class="container mt-2">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addcatelogy" >
+            Thêm danh mục
+        </button>
+        <div class="modal fade" id="addcatelogy" data-bs-backdrop="static">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm danh mục</h4>
+                </div>
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="#">
-                            <div class="mt-3 mb-3">
-                                <label for="text" class="form-label">Tên danh mục</label>
-                                <input type="text" class="form-control" id="tendanhmuc" placeholder="Nhập tên danh mục">
-                            </div>
-                            <div class="mb-3">
-                                <label for="text" class="form-label">Mô tả</label>
-                                <textarea class="form-control" id="motadanhmuc" rows="4" placeholder="Nhập mô tả danh mục"></textarea>
-                            </div>
-                        </form>
-                    </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="mt-3 mb-3">
+                            <label for="text" class="form-label">Tên danh mục</label>
+                            <input type="text" class="form-control" id="tendanhmuc" placeholder="Nhập tên danh mục">
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="motadanhmuc" rows="4" placeholder="Nhập mô tả danh mục"></textarea>
+                        </div>
+                    </form>
+                </div>
 
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Xác nhận</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
 
-                    </div>
                 </div>
             </div>
         </div>

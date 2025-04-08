@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div class="container ">
-      <h3 class="mt-3">Quản lý tài khoản</h3>
-      <form class="border-top border-3 border-primary rounded-top">
+    <div class="container mt-2">
+      <form>
         <div class="row mt-2">
           <div class="col-8">
             <input type="text" class="form-control" placeholder="Tên tài khoản, email" />

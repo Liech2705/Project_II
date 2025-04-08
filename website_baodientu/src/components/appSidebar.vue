@@ -12,20 +12,20 @@
       </div>
       <ul class="sidebar-nav">
         <li class="sidebar-item">
-          <router-link :to="{ name: 'catelogy' }" class="sidebar-link text-decoration-none">
+          <router-link :to="{ name: 'catelogy' }" class="sidebar-link text-decoration-none" :active-class="'active'">
             <i class="fa-solid fa-tags"></i>
             <span>Doanh mục</span>
           </router-link>
         </li>
         <li class="sidebar-item">
-          <router-link :to="{ name: 'account_manager'}" class="sidebar-link text-decoration-none">
+          <router-link :to="{ name: 'account_manager'}" class="sidebar-link text-decoration-none" :active-class="'active'">
             <i class="fa-solid fa-users"></i>
             <span>Tài Khoản</span>
           </router-link>
         </li>
         
         <li class="sidebar-item">
-          <router-link :to="{ name: 'newspaper_manager'}" class="sidebar-link text-decoration-none">
+          <router-link :to="{ name: 'newspaper_manager'}" class="sidebar-link text-decoration-none" :active-class="'active'">
             <i class="fa-solid fa-newspaper"></i>
             <span>Bài viết</span>
           </router-link>
@@ -40,12 +40,12 @@
           </button>
           <div class="dropdown">
             <router-link class="navbar-logo dropdown-toggle" to="/" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="@/assets/image/admin.png" alt="" class="img-fluid rounded-circle border-black" style="width: 2.45rem; height: 2.45rem;">
+              <img src="@/assets/image/admin.png" alt="image-admin" class="img-fluid rounded-circle border-black" style="width: 2.45rem; height: 2.45rem;">
             </router-link> 
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-              <li><router-link to="/" class="dropdown-item" href="#">Thông tin cá nhân</router-link></li>
-              <li><router-link to="/" class="dropdown-item" href="#">Đổi mật khẩu</router-link></li>
-              <li><router-link to="/" class="dropdown-item" href="#">Đăng xuất</router-link></li>
+              <li><router-link to="/" class="dropdown-item">Thông tin cá nhân</router-link></li>
+              <li><router-link to="/" class="dropdown-item">Đổi mật khẩu</router-link></li>
+              <li><router-link to="/" class="dropdown-item">Đăng xuất</router-link></li>
             </ul>
           </div>
       </div>
@@ -54,7 +54,21 @@
     </nav>
     <!-- Main Content -->
     <div class="main flex-grow-1 p-3" :class="{ 'main-expanded': isExpand }">
-      <router-view />
+      <div class="container">
+        <div class="d-flex mb-3">
+          <h3>{{ namePages.find(page => page.name === $route.name)?.title}}</h3>
+          <!-- <div class="ms-auto d-flex align-items-end" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active"><a href="#">Home</a></li>
+              <li class="breadcrumb-item" aria-current="page">Library</li>
+            </ol>
+          </div> -->
+        </div>
+        <div class="border-top border-3 border-primary rounded-top">
+          <router-view />
+        </div>
+       
+      </div>   
     </div>
   </div>
 </template>
@@ -66,9 +80,11 @@ import { Popover } from 'bootstrap';
 import { RouterLink } from 'vue-router';
 
 const isExpand = ref(false);
- // Khởi tạo biến popoverInstance bên ngoài hàm onMounted
-const notif = ref(4);
-
+const namePages = ref([
+  { name: 'catelogy', title: 'Quản lý danh mục' },
+  { name: 'account_manager', title: 'Quản lý tài khoản' },
+  { name: 'newspaper_manager', title: 'Quản lý bài viết' },
+]);
 
 const toggleSidebar = () => {
   isExpand.value = !isExpand.value;
@@ -80,6 +96,9 @@ const notification = ref([
   { message: 'Đã cấm tài khoản a' },
   { message: 'Có người liên hệ' },
 ])
+
+  const notif = notification.value.length;
+
 onMounted(() => {
     const popoverTrigger = document.querySelector('.nav-notifi');
     new Popover(popoverTrigger, {
@@ -259,6 +278,12 @@ body {
     display: inline-block;
     width: 40px;
     height: 40px;
+}
+
+.sidebar-link.active {
+  background-color: rgba(255, 255, 255, 0.1); /* Màu nền khi được chọn */
+  border-left: 3px solid #3b7ddd; /* Đường viền trái để làm nổi bật */
+  color: #fff; /* Màu chữ */
 }
 </style>
 

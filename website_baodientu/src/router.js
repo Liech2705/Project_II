@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 import appSidebar from './components/appSidebar.vue';
-import Catelogy_Page from './components/Catelogy_Page.vue';
-import Account_Manager from './components/Account_Page.vue';
-import Newspaper_Manager from './components/News_Pages.vue';
+import Catelogy_Page from './pages/Catelogy_Page.vue';
+import Account_Manager from './pages/Account_Page.vue';
+import Newspaper_Manager from './pages/News_Pages.vue';
 // Define your routes
 const routes = [
     {
