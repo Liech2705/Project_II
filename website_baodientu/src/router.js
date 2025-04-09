@@ -14,22 +14,24 @@ const routes = [
         children : [ {
             path: '/catelogyPages',
             name: 'catelogy',
+            meta: { title: 'Quản lý danh mục'},
             component: Catelogy_Page,
         },
         {
             path: '/accountPages',
             name: 'account_manager',
+            meta: { title: 'Quản lý tài khoản'},
             component: Account_Manager,
         },
         {
             path: '/newspaperPages',
             name: 'newspaper_manager',
+            meta: { title: 'Quản lý bài viết'},
             component: Newspaper_Manager,
         }
         ],
     },
 ];
-
 // Create the router instance
 const router = createRouter({
     history: createWebHistory(),

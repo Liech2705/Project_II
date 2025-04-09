@@ -34,10 +34,10 @@
     </aside>
     <nav class="navbar navbar-expand-sm  bg-primary fixed-top border-bottom " id="navbar">
       <div class="container-fluid d-flex justify-content-end align-items-center">
-          <button class="nav-notifi btn btn-outline-dark btn-primary me-2" title="Thông báo" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="bottom" data-bs-content="Content">
-            <i class="fa-regular fa-bell"></i>
+          <a href="#" class="nav-notifi text-light me-2" title="Thông báo" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="bottom" data-bs-content="Content">
+            <i class="fa-solid fa-bell"></i>
             <span class="badge bg-danger">{{ notif }}</span>
-          </button>
+          </a>
           <div class="dropdown">
             <router-link class="navbar-logo dropdown-toggle" to="/" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="@/assets/image/admin.png" alt="image-admin" class="img-fluid rounded-circle border-black" style="width: 2.45rem; height: 2.45rem;">
@@ -56,13 +56,13 @@
     <div class="main flex-grow-1 p-3" :class="{ 'main-expanded': isExpand }">
       <div class="container">
         <div class="d-flex mb-3">
-          <h3>{{ namePages.find(page => page.name === $route.name)?.title}}</h3>
-          <!-- <div class="ms-auto d-flex align-items-end" aria-label="breadcrumb">
+          <h3>{{ $route.meta.title }}</h3>
+          <div class="ms-auto d-flex align-items-end" aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item active"><a href="#">Home</a></li>
-              <li class="breadcrumb-item" aria-current="page">Library</li>
+              <li class="breadcrumb-item active"><router-link to="/">Trang chủ</router-link></li>
+              <li class="breadcrumb-item" aria-current="page">{{ $route.meta.title }}</li>
             </ol>
-          </div> -->
+          </div>
         </div>
         <div class="border-top border-3 border-primary rounded-top">
           <router-view />
@@ -80,11 +80,6 @@ import { Popover } from 'bootstrap';
 import { RouterLink } from 'vue-router';
 
 const isExpand = ref(false);
-const namePages = ref([
-  { name: 'catelogy', title: 'Quản lý danh mục' },
-  { name: 'account_manager', title: 'Quản lý tài khoản' },
-  { name: 'newspaper_manager', title: 'Quản lý bài viết' },
-]);
 
 const toggleSidebar = () => {
   isExpand.value = !isExpand.value;
