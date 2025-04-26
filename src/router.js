@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import appSidebar from './components/appSidebar.vue';
 import Catelogy_Page from './components/Catelogy_Page.vue';
 import Account_Manager from './components/Account_Page.vue';
-import Account_Banner from './components/Banner_Page.vue';
+import Newspaper_Manager from './components/News_Pages.vue';
 // Define your routes
 const routes = [
     {
@@ -18,16 +18,14 @@ const routes = [
         },
         {
             path: '/accountPages',
-            name: 'accountmanager',
-            /* eslint-disable vue/multi-word-component-names */
+            name: 'account_manager',
             component: Account_Manager,
         },
         {
-            path: '/bannerPages',
-            name: 'accountbanner',
-            /* eslint-disable vue/multi-word-component-names */
-            component: Account_Banner,
-        },
+            path: '/newspaperPages',
+            name: 'newspaper_manager',
+            component: Newspaper_Manager,
+        }
         ],
     },
 ];

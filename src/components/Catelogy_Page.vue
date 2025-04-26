@@ -15,6 +15,10 @@
                     <div class="modal-body">
                         <form action="#">
                             <div class="mt-3 mb-3">
+                                <label for="text" class="form-label">Từ khóa</label>
+                                <input type="text" class="form-control" id="keyword" placeholder="Nhập từ khóa">
+                            </div>
+                            <div class="mt-3 mb-3">
                                 <label for="text" class="form-label">Tên danh mục</label>
                                 <input type="text" class="form-control" id="tendanhmuc" placeholder="Nhập tên danh mục">
                             </div>

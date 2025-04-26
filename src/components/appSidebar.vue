@@ -18,28 +18,14 @@
           </router-link>
         </li>
         <li class="sidebar-item">
-          <router-link to="#" class="sidebar-link text-decoration-none collapsed has-dropdown" data-bs-toggle="collapse"
-            data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+          <router-link :to="{ name: 'account_manager'}" class="sidebar-link text-decoration-none">
             <i class="fa-solid fa-users"></i>
             <span>Tài Khoản</span>
           </router-link>
-          <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-            <li class="sidebar-item">
-              <router-link :to="{ name: 'accountmanager'}" class="sidebar-link text-decoration-none ms-3">
-                <i class="fa-solid fa-address-book"></i>
-                <span>Danh sách tài khoản</span>
-              </router-link>
-            </li>
-            <li class="sidebar-item">
-              <router-link :to="{ name: 'accountbanner'}" class="sidebar-link text-decoration-none ms-3">
-                <i class="fa-solid fa-user-lock"></i>
-                <span>Tài khoản cấm</span>
-              </router-link>
-            </li>
-          </ul>
         </li>
+        
         <li class="sidebar-item">
-          <router-link to="#" class="sidebar-link text-decoration-none">
+          <router-link :to="{ name: 'newspaper_manager'}" class="sidebar-link text-decoration-none">
             <i class="fa-solid fa-newspaper"></i>
             <span>Bài viết</span>
           </router-link>
@@ -54,14 +40,12 @@
     </aside>
     <nav class="navbar navbar-expand-sm  bg-primary fixed-top border-bottom" id="navbar">
       <div class="container-fluid d-flex justify-content-end align-items-center">
-        <button type="button" class="nav-notification btn btn-outline-dark btn-primary me-2" title="Header" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Content">
+        <button class="nav-notifi btn btn-outline-dark btn-primary me-2" title="Thông báo" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Content">
           <i class="fa-regular fa-bell"></i>
           <span class="badge bg-danger">{{ notif }}</span>
         </button>
         <router-link class="navbar-brand" to="/">
-          <!-- <span class="nav-icon btn btn-outline-dark "> -->
             <img src="@/assets/image/admin.png" alt="" class="img-fluid rounded-circle border-black" style="width: 2.45rem; height: 2.45rem;">
-          <!-- </span> -->
         </router-link> 
       </div>
     </nav>
@@ -76,17 +60,33 @@
 import { ref } from 'vue';
 import { onMounted } from 'vue';
 import { Popover } from 'bootstrap';
+import { RouterLink } from 'vue-router';
 
 const isExpand = ref(false);
 const toggleSidebar = () => {
   isExpand.value = !isExpand.value;
 };
-const notif = 4
+const notif = ref(4)
 onMounted(() => {
-      document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
-        new Popover(el);
-      });
-    });
+    const popoverTrigger = document.querySelector('.nav-notifi');
+    new Popover(popoverTrigger, {
+    content: `
+    <div>
+      <p class="text-center">Bạn đã nhận được một thông báo <a href="#" class="d-flex  align-items-center text-decoration-none  mb-2">
+            <i class="fa-solid fa-bell me-2"></i>
+            <span>link</span>
+        </a></p>
+        
+        <a href="#" class="text-decoration-none  mb-2">
+            <i class="fa-solid fa-bell me-2"></i>
+            <span>Thông báo 2</span>
+        </a>
+    </div>
+    `,
+    html: true, // Cho phép nội dung HTML
+    placement: 'bottom', // Vị trí popover
+  });
+});
 </script>
 
 <style scoped>
